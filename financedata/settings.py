@@ -108,8 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'zh-hant'
-#zh-hant
+LANGUAGE_CODE = 'zh-hans'
+#zh-hans
 #en-us
 TIME_ZONE = 'UTC'
 

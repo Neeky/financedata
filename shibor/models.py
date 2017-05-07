@@ -9,7 +9,6 @@ class ShiborRate(models.Model):
     oneWeek     --  一周期利率
     twoWeek     --  两周期利率
     oneMonth    --  一月期利率
-    twoMonth    --  两月期利率
     threeMonth  --  三月期利率
     sixMonth    --  半年期利率
     nineMonth   --  九月期利率

@@ -40,5 +40,5 @@ class ShiborReport(View):
     """"""
     def post(self,request):
         """"""
-        -- ShiborRate.objects
+        print(ShiborRate.objects)
         pass

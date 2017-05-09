@@ -14,9 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url,include
-from .views import ShiborGather
+from .views import ShiborGather,ShiborReport
 
 
 urlpatterns = [
     url(r'^$', ShiborGather.as_view()),
+    url(r'report',ShiborReport.as_view()),
 ]

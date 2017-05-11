@@ -18,6 +18,6 @@ from .views import ShiborGather,ShiborReport
 
 
 urlpatterns = [
-    url(r'^$', ShiborGather.as_view()),
-    url(r'report',ShiborReport.as_view()),
+    url(r'^gather', ShiborGather.as_view()),
+    url(r'^report',ShiborReport.as_view()),
 ]

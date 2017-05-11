@@ -43,15 +43,7 @@ class ShiborReport(View):
     
     """
     #all 表示所有期限.
-    terms=['oneNight','oneWeek','twoWeek','oneMonth','threeMonth','sixMonth','nineMonth','oneYear','all']
-    def getOneNight(self,termName,fromDate,toDate):
-        """
-        完成对隔夜利率的抽取
-        ternName        --  期限名
-        fromDate        --  起始日期、datetime类型
-        toDate          --  截止日期、toDate类型
-        """
-        return ShiborRate.objects.values('pushDate','oneNight').filter(pushdate__gte=fromDate).filter(pushDate__lte=toDate)
+    terms=['oneNight','oneWeek','twoWeek','oneMonth','threeMonth','sixMonth','nineMonth','oneYear']
 
     def post(self,request):
         """
@@ -88,8 +80,8 @@ class ShiborReport(View):
                 raise ValueError("{0}这个值对于shiborReport来说不正确")
             
             #抽数据
-            data=self.getOneNight(termName,fromDate,toDate)
-            result['datas']=[{'oneNight':data},]
+            data=ShiborRate.objects.values('pushDate',term).filter(pushdate__gte=fromDate).filter(pushDate__lte=toDate)
+            result['data']=[{term:data},]
 
             #返回数据
             return JsonResponse(result)
@@ -103,3 +95,6 @@ class ShiborReport(View):
         except Exception as e:
             result['msg']=str(e)
             return JsonResponse(result)
+        
+    def get(self,request):
+        return self.post(request)

@@ -75,12 +75,15 @@ class ShiborReport(View):
             year,month,day=fromDate.split('-')
             fromDate=datetime(year=int(year),month=int(month),day=int(day))
             year,month,day=toDate.split('-')
-            toDate=datetime(year=int(year),month=int(month),day=int(day),hour=23,minute=59,sencond=59)
+            toDate=datetime(year=int(year),month=int(month),day=int(day),hour=23,minute=59,second=59)
             if term not in ShiborReport.terms:
                 raise ValueError("{0}这个值对于shiborReport来说不正确")
             
             #抽数据
-            data=ShiborRate.objects.values('pushDate',term).filter(pushdate__gte=fromDate).filter(pushDate__lte=toDate)
+            data=ShiborRate.objects.values('pushDate',term).filter(pushDate__gte=fromDate).filter(pushDate__lte=toDate)
+            print(data[0])
+            #data={'a':'100'}
+            data=dict([(str(item['pushDate']),item[term]) for item in data])
             result['data']=[{term:data},]
 
             #返回数据
